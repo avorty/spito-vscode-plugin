@@ -3,7 +3,7 @@
   "publisher": "Avorty",
   "displayName": "spito",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/avorty/spito-vscode-plugin",
   "engines": {
     "vscode": "^1.86.0"
@@ -19,9 +19,10 @@
     "commands": []
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
+    "vscode:prepublish": "pnpm esbuild-base --minify",
     "vscode:package": "pnpm vsce package --no-dependencies",
     "vscode:publish": "pnpm vsce publish --no-dependencies",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
@@ -38,7 +39,9 @@
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.3.9",
     "@vscode/vsce": "^2.23.0",
+    "esbuild": "^0.20.0",
     "eslint": "^8.56.0",
+    "pnpm": "^8.15.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
