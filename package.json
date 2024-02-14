@@ -1,8 +1,10 @@
 {
   "name": "spito",
+  "publisher": "Avorty",
   "displayName": "spito",
   "description": "",
   "version": "0.0.1",
+  "repository": "https://github.com/avorty/spito-vscode-plugin",
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -18,8 +20,8 @@
   },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
-    "package": "pnpm vsce package --no-dependencies",
-    "publish": "pnpm vsce publish --no-dependencies",
+    "vscode:package": "pnpm vsce package --no-dependencies",
+    "vscode:publish": "pnpm vsce publish --no-dependencies",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
