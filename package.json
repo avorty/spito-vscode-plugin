@@ -4,7 +4,7 @@
   "displayName": "spito",
   "icon": "images/icon.png",
   "description": "",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com/avorty/spito-vscode-plugin",
   "engines": {
     "vscode": "^1.86.0"
