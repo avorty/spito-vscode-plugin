@@ -2,6 +2,7 @@
   "name": "spito",
   "publisher": "Avorty",
   "displayName": "spito",
+  "icon": "images/icon.png",
   "description": "",
   "version": "0.0.2",
   "repository": "https://github.com/avorty/spito-vscode-plugin",
