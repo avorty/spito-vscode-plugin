@@ -40,6 +40,8 @@ export async function activate(context: vscode.ExtensionContext) {
   spitoYamls = await getAllSpitoConfs();
   rulePathAndConfPath = getRulePathAndConfPath(spitoYamls);
 
+  watchForSpitoYamlChanges();
+
   context.subscriptions.push(
     vscode.languages.registerCompletionItemProvider(
       "lua",
@@ -47,6 +49,25 @@ export async function activate(context: vscode.ExtensionContext) {
       "."
     )
   );
+}
+
+function watchForSpitoYamlChanges() {
+  const ymlWatcher = vscode.workspace.createFileSystemWatcher("**/spito.yml")
+  const yamlWatcher = vscode.workspace.createFileSystemWatcher("**/spito.yaml")
+
+  const updateVariableFn = async () => {
+    spitoYamls = await getAllSpitoConfs();
+    rulePathAndConfPath = getRulePathAndConfPath(spitoYamls);
+  };
+
+  onAnyChange(ymlWatcher, updateVariableFn);
+  onAnyChange(yamlWatcher, updateVariableFn);
+}
+
+function onAnyChange(watcher: vscode.FileSystemWatcher, cb: (e: vscode.Uri) => void) {
+  watcher.onDidChange(cb);
+  watcher.onDidCreate(cb);
+  watcher.onDidDelete(cb);
 }
 
 class ApiAutoCompletionProvider implements vscode.CompletionItemProvider {
